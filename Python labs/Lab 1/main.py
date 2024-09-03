@@ -7,11 +7,12 @@ def get_coef(ind: int, promt: str) -> float:
         coef = argv[ind]
     except IndexError:
         coef = input(promt)
-    try:
-        ret_coef = float(coef)
-        return ret_coef
-    except ValueError:
-        return get_coef(ind, promt)
+
+    while True:
+        try:
+            return float(coef)
+        except ValueError:
+            coef = input(promt)
 
 
 def get_result(a: float, b: float, c: float) -> set:
@@ -21,8 +22,9 @@ def get_result(a: float, b: float, c: float) -> set:
         sdisc = sqrt(b * b - 4 * a * c)
 
         x1 = (-b + sdisc) / (2 * a)
-        result.add(sqrt(x1))
-        result.add(-sqrt(x1))
+        if x1 > 0:
+            result.add(sqrt(x1))
+            result.add(-sqrt(x1))
 
         x2 = (-b - sdisc) / (2 * a)
         result.add(sqrt(x2))
