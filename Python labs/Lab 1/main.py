@@ -22,7 +22,7 @@ def get_result(a: float, b: float, c: float) -> set:
         sdisc = sqrt(b * b - 4 * a * c)
 
         x1 = (-b + sdisc) / (2 * a)
-        if x1 > 0:
+        if x1 >= 0:
             result.add(sqrt(x1))
             result.add(-sqrt(x1))
 

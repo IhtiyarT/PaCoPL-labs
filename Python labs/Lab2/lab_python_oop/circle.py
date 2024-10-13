@@ -10,7 +10,9 @@ class Circle(Shape):
     def get_name(cls):
         return cls.SHAPE_NAME
 
-    def __init__(self, radius, color):
+    def __init__(self, radius, color="Blue"):
+        if radius < 0:
+            raise TypeError
         self.__radius = radius
         self.color = Color()
         self.color.color = color

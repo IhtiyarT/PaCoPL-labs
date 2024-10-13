@@ -9,7 +9,9 @@ class Rectangle(Shape):
     def get_name(cls):
         return cls.SHAPE_NAME
 
-    def __init__(self, hight, width, color):
+    def __init__(self, hight, width, color="Blue"):
+        if hight < 0 or width < 0:
+            raise TypeError
         self.__hight = hight
         self.__width = width
         self.color = Color()
