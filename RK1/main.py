@@ -45,6 +45,31 @@ pl_ops = [
 ]
 
 
+def first_task(op_list):
+    res_1 = sorted(op_list, key=itemgetter(0))
+    return res_1
+
+
+def second_task(op_list):
+    res_2 = []
+    temp_dict = dict()
+    for i in op_list:
+        if i[2] in temp_dict:
+            temp_dict[i[2]] += 1
+        else:
+            temp_dict[i[2]] = 1
+    for i in temp_dict.keys():
+        res_2.append((i, temp_dict[i]))
+
+    res_2.sort(key=itemgetter(1), reverse=True)
+    return res_2
+
+
+def third_task(op_list, end_ch):
+    res_3 = [(i[0], i[2]) for i in op_list if i[0].endswith(end_ch)]
+    return res_3
+
+
 def main():
     one_to_many = [(op.name, op.ascii_code, pl.name)
                    for pl in prog_langs
@@ -61,26 +86,13 @@ def main():
                     for op in ops if op.id == op_id]
 
     print('Задание Б1')
-    res_1 = sorted(one_to_many, key=itemgetter(0))
-    print(res_1)
+    print(first_task(one_to_many))
 
     print("\nЗадание Б2")
-    res_2 = []
-    temp_dict = dict()
-    for i in one_to_many:
-        if i[2] in temp_dict:
-            temp_dict[i[2]] += 1
-        else:
-            temp_dict[i[2]] = 1
-    for i in temp_dict.keys():
-        res_2.append((i, temp_dict[i]))
-
-    res_2.sort(key=itemgetter(1), reverse=True)
-    print(res_2)
+    print(second_task(one_to_many))
 
     print("\nЗадание Б3")
-    res_3 = [(i[0], i[2]) for i in many_to_many if i[0].endswith('s')]
-    print(res_3)
+    print(third_task(many_to_many, 's'))
 
 
 if __name__ == '__main__':
