@@ -31,6 +31,8 @@ def get_result(a: float, b: float, c: float) -> set:
         result.add(-sqrt(x2))
         return result
     except ValueError or TypeError:
+        if len(result) == 0:
+            raise RuntimeWarning
         return result
 
 
